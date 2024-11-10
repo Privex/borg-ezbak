@@ -1,0 +1,47 @@
+repos:
+    # The name here will be used for naming your backups
+    # by default your backups will be stored at {path}::{name}-%Y-%m-%d-%H%M
+    # e.g. /root/borgbackups::main-2024-11-10-1920
+    main:
+      # Borg repo to store backups
+      # Can be a remote path via SSH e.g. ssh://ubuntu@1.2.3.4/backups
+      path: "/root/borgbackups"
+      # Backup compression method - can be lz4, zstd, lzma, zlib
+      # For zstd/lzma/zlib you can also select compression level using commas
+      # e.g. "zstd,11" or "lzma,3" - higher number = better compression but slower
+      #
+      # lz4 is the fastest compressor with pretty good compression ratios
+      #
+      # zstd is the second fastest with default settings, while having
+      # somewhat better compression ratio than lz4
+      #
+      # lzma is the slowest and not recommended due to it's very slow speeds
+      # unless maximum compression is absolutely essential
+      compress: lz4
+      # log level (debug, info, warn, error, critical)
+      log: info
+      # folders to backup
+      backup:
+        - /home
+        - /root
+        - /var/lib
+      # encryption password if you're using repokey
+      password: hello
+      # show compression/dedupe stats after completion
+      stats: yes
+      # files/folders to exclude - you can use * for wildcard
+      exclude:
+        - "*.log"
+        - "*.log.*"
+      # Prune old backups, keep this many hourly, daily, monthly, and yearly backups
+      prune:
+        hourly: 1
+        daily: 7
+        monthly: 3
+        yearly: 1
+      # Additional flags to pass to 'borg create' if there's not a YML setting
+      # available in this wrapper
+      create_flags:
+        - "--list"
+
+      

@@ -1,0 +1,12 @@
+config.yml
+*.swp*
+/backups
+/borgbackups
+*.log
+*.log*
+~*
+.DS_Store
+*.tmp
+*.pyc
+__pycache__
+

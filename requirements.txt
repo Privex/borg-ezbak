@@ -1,0 +1,5 @@
+rich[jupyter]
+privex-helpers
+privex-loghelper
+pyyaml
+
